@@ -1,0 +1,11 @@
+version: '3.1'
+
+services:
+  todo-react-app:
+    build: './'
+    volumes:
+      - './:/app:rw'
+    working_dir: '/app'
+    command: 'npm start'
+    ports:
+      - '8081:3000'
