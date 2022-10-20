@@ -1,21 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import TaskForm from '../components/TaskForm';
+import request from '../utils/Request';
+
+function handleForm(e) {
+    console.log(e)
+}
 
 function Task() {
-    const tasks = [
-        { id: 0, label:'Première tâche' },
-        { id: 1, label:'Seconde tâche' },
-        { id: 2, label:'Troisième tâche' },
-        { id: 3, label:'Quatrième tâche' },
-        { id: 4, label:'Cinquième tâche' },
-        { id: 5, label:'Sixième tâche' }
-    ]
     const { id } = useParams();
-    const task = tasks.find(task => task.id === Number(id));
+    const [task, setTask] = useState([]);
+    useEffect(() => {
+        request.get('/todos/' + id).then(response => setTask(response.data));
+    }, [ id ])
     return (
         <React.Fragment>
-            <p><strong>Id: </strong>{task.id}</p>
-            <p><strong>Libellé: </strong>{task.label}</p>
+            <TaskForm task={task} action="Modifier l'action" onFormSubmit={handleForm} />
         </React.Fragment>
     );
 }

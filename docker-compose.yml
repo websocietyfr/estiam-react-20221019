@@ -8,4 +8,12 @@ services:
     working_dir: '/app/react-todo-app'
     command: 'npm start'
     ports:
-      - '8081:3000'
+      - '3000:3000'
+  todo-node:
+    build: './'
+    volumes:
+      - './:/app:rw'
+    working_dir: '/app/todo-node'
+    command: 'node app.js'
+    ports:
+      - '3001:3000'

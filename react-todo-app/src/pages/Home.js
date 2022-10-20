@@ -1,9 +1,20 @@
-
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import TokenContext from '../contextes/TokenContext';
 function Home() {
     return (
-        <section className="container">
-            <h1>Hello World !</h1>
-        </section>
+        <Row>
+            <Col>
+                <TokenContext.Consumer>
+                    {
+                        token => (
+                            token
+                        )
+                    }
+                </TokenContext.Consumer>
+                <h1>Hello World !</h1>
+            </Col>
+        </Row>
     )
 }
 
