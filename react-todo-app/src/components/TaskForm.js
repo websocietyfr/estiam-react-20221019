@@ -1,18 +1,20 @@
 import { useEffect, useState } from "react";
 import Row from "react-bootstrap/esm/Row";
 
-function TaskForm({ task = {}, action, onFormSubmit }) {
-    const [todo, setTodo] = useState(task.todo);
-    const [priority, setPriority] = useState(task.priority);
-    const [category, setCategory] = useState(task.category);
-    const [status, setStatus] = useState(task.status);
+function TaskForm({ task, action, onFormSubmit }) {
+    const [todo, setTodo] = useState();
+    const [priority, setPriority] = useState();
+    const [category, setCategory] = useState();
+    const [status, setStatus] = useState();
 
     useEffect(() => {
-        setTodo(task.todo);
-        setPriority(task.priority);
-        setCategory(task.category);
-        setStatus(task.status);
-    }, [ task ]);
+        if(task) {
+            setTodo(task.todo);
+            setPriority(task.priority);
+            setCategory(task.category);
+            setStatus(task.status);
+        }
+    }, [task]);
 
     function handleForm(e) {
         e.preventDefault();
