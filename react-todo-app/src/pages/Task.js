@@ -1,22 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import TaskForm from '../components/TaskForm';
 import request from '../utils/Request';
 
-function handleForm(e) {
-    console.log(e)
-}
-
 function Task() {
     const { id } = useParams();
-    const [task, setTask] = useState([]);
+    const [task, setTask] = useState({});
+    const navigate = useNavigate();
+    
     useEffect(() => {
         request.get('/todos/' + id).then(response => setTask(response.data));
     }, [ id ])
+
+    function handleForm(formTask) {
+        console.log('formTask', formTask);
+        request.put('/todos/' + id, formTask).then((response) => {
+            navigate('/tasks');
+        })
+    }
+
     return (
-        <React.Fragment>
-            <TaskForm task={task} action="Modifier l'action" onFormSubmit={handleForm} />
-        </React.Fragment>
+        <TaskForm task={task} action="Modifier l'action" onFormSubmit={handleForm} />
     );
 }
 
