@@ -5,6 +5,7 @@ import Container from 'react-bootstrap/Container';
 import './App.css';
 import Home from './pages/Home';
 import Tasks from './pages/Tasks';
+import NewTasks from './pages/NewTasks';
 import Task from './pages/Task';
 import TokenContext from './contextes/TokenContext';
 
@@ -18,7 +19,10 @@ function App() {
           <Routes>
             <Route path="/">
               <Route index element={<Home />} />
-              <Route path="tasks" element={<Tasks />} />
+              <Route path="tasks">
+                <Route index element={<Tasks />} />
+                <Route path="new" element={<NewTasks />} />
+              </Route>
               <Route path="task/:id" element={<Task />} />
             </Route>
           </Routes>

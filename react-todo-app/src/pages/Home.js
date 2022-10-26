@@ -1,18 +1,12 @@
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import TokenContext from '../contextes/TokenContext';
+import { NavLink } from 'react-router-dom';
 function Home() {
     return (
         <Row>
             <Col>
-                <TokenContext.Consumer>
-                    {
-                        token => (
-                            token
-                        )
-                    }
-                </TokenContext.Consumer>
                 <h1>Hello World !</h1>
+                <NavLink to="/tasks" className="btn btn-primary">Accéder a la liste des tâches</NavLink>
             </Col>
         </Row>
     )

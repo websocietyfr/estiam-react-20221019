@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import Container from "react-bootstrap/esm/Container";
+import { Link } from "react-router-dom";
 import TaskCard from "../components/TaskCard"
 import request from "../utils/Request";
 
@@ -8,21 +9,18 @@ const Tasks = () => {
     useEffect(() => {
         request.get('/todos').then(response => setTasks(response.data));
     }, [])
-    /*const tasks = [
-        { id: 0, label:'Première tâche' },
-        { id: 1, label:'Seconde tâche' },
-        { id: 2, label:'Troisième tâche' },
-        { id: 3, label:'Quatrième tâche' },
-        { id: 4, label:'Cinquième tâche' },
-        { id: 5, label:'Sixième tâche' }
-    ]*/
 
     return (
-        <Container>
-            {tasks.length ? tasks.map((task) => (
-                <TaskCard key={task.id} task={task} />
-            )) : ''}
-        </Container>
+        <>
+            <Container>
+                <Link to="/tasks/new" className="btn btn-info">Nouvelle tâche</Link>
+            </Container>
+            <Container>
+                {tasks.length ? tasks.map((task) => (
+                    <TaskCard key={task.id} task={task} />
+                )) : ''}
+            </Container>
+        </>
     )
 }
 

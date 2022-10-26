@@ -12,7 +12,7 @@ function Task() {
         request.get('/todos/' + id).then(response => setTask(response.data));
     }, [ id ])
 
-    function handleForm(formTask) {
+    function editTask(formTask) {
         console.log('formTask', formTask);
         request.put('/todos/' + id, formTask).then((response) => {
             navigate('/tasks');
@@ -20,7 +20,7 @@ function Task() {
     }
 
     return (
-        <TaskForm task={task} action="Modifier l'action" onFormSubmit={handleForm} />
+        <TaskForm task={task} action="Modifier la tâche" onFormSubmit={editTask} />
     );
 }
 
